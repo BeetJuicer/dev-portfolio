@@ -1,0 +1,8 @@
+[
+    "SideScrollerCharacterStateMachine.cs",
+    "Wind.cs",
+    "State_SS_Dive.cs",
+    "State_SS_Glide.cs",
+    "State_SS_RideWind.cs",
+    "Movement_SS_Kinematic.cs"
+]

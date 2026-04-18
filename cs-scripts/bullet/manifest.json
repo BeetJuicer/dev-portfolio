@@ -1,0 +1,8 @@
+[
+    "Bullet.cs",
+    "BulletEmitter.cs",
+    "BulletGroup.cs",
+    "SO_BulletPattern.cs",
+    "SO_BulletWave.cs",
+    "PoolManager.cs"
+]

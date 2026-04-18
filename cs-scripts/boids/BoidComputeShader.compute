@@ -1,0 +1,97 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+
+struct BoidData
+{
+    float2 position;
+    float2 velocity;
+};
+
+RWStructuredBuffer<BoidData> boids;
+int boidCount;
+
+float visualRange, protectedRange;
+float avoidanceFactor;
+float matchingFactor;
+float centeringFactor;
+float turnFactor;
+float leftMargin, rightMargin, topMargin, bottomMargin;
+
+
+[numthreads(64,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    float closeDx, closeDy;
+    float xVelAverage, yVelAverage;
+    float xPosAverage, yPosAverage;
+    int neighboringBoids;
+    
+    BoidData self = boids[id.x];
+    
+    for (int i = 0; i < boidCount; i++)
+    {
+        if ((int)id.x == i)
+            continue; //skip self
+        
+        BoidData otherBoid = boids[i];
+        
+        //separation
+        if (distance(self.position, otherBoid.position) < protectedRange)
+        {
+            closeDx += self.position.x - otherBoid.position.x;
+            closeDy += self.position.y - otherBoid.position.y;
+        }
+        else if (distance(self.position, otherBoid.position) < visualRange)//neighboring voids not in protected range
+        {
+            neighboringBoids += 1;
+
+                //alignment. Get the average velocity of nearby boids.
+            xVelAverage += otherBoid.velocity.x;
+            yVelAverage += otherBoid.velocity.y;
+
+                //cohesion. Get the average position of boids in range.
+            xPosAverage += otherBoid.position.x;
+            yPosAverage += otherBoid.position.y;
+        }
+    }
+
+    // Divide accumulators by count of boids    
+    if (neighboringBoids > 0)
+    {
+        xVelAverage /= neighboringBoids;
+        yVelAverage /= neighboringBoids;
+
+        xPosAverage /= neighboringBoids;
+        yPosAverage /= neighboringBoids;
+
+        self.velocity.x += (xVelAverage - self.velocity.x) * matchingFactor;
+        self.velocity.y += (yVelAverage - self.velocity.y) * matchingFactor;
+
+        self.velocity.x += (xPosAverage - self.position.x) * centeringFactor;
+        self.velocity.y += (yPosAverage - self.position.y) * centeringFactor;
+    }
+
+        // Avoidance
+    self.velocity.x += closeDx * avoidanceFactor;
+    self.velocity.y += closeDy * avoidanceFactor;
+
+
+
+    // Handle turning from edges.
+    if (self.position.x < leftMargin)
+        self.velocity.x += turnFactor;
+    if (self.position.x > rightMargin)
+        self.velocity.x -= turnFactor;
+    if (self.position.y > bottomMargin)
+        self.velocity.y -= turnFactor;
+    if (self.position.y < topMargin)
+        self.velocity.y += turnFactor;
+
+    float speed = sqrt(self.velocity.x * self.velocity.x + self.velocity.y * self.velocity.y);
+    boids[id.x] = self;
+}
+
+
