@@ -180,4 +180,56 @@ function initReveal(){
     draw();
   })();
 
-  
+  //showcase
+function showcaseCard(num, { title, tags, description, youtubeId, itchUrl, projectKey }) {
+  const tagPills = tags.map(t => `<span class="tag-pill">${t}</span>`).join('');
+
+  const itchBtn = itchUrl ? `
+    <div class="card-body-footer">
+      <a class="itch-btn" href="${itchUrl}" target="_blank">
+        <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
+        Play on itch.io
+      </a>
+    </div>` : '';
+
+  return `
+    <div class="showcase-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-summary">
+          <div class="card-num">${String(num).padStart(2, '0')}</div>
+          <div class="card-title">${title}</div>
+        </div>
+        <div class="card-header-right">
+          <div class="card-tags">${tagPills}</div>
+          <span class="card-chevron">▶</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-desc">${description}</p>
+          <div class="embed-area">
+            <iframe
+              src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0"
+              frameborder="0"
+              allowfullscreen
+              allow="autoplay"
+            ></iframe>
+          </div>
+          ${itchBtn}
+          <div class="scripts-toggle">
+            <button class="toggle-btn" onclick="toggleScripts(this)">
+              <span class="scripts-icon">{&nbsp;}</span> View Scripts
+            </button>
+          </div>
+          <div class="scripts-panel" data-project="${projectKey}">
+            <div class="file-tabs"></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function initShowcaseCards(data) {
+  document.getElementById('showcase-cards').innerHTML =
+    data.map((card, i) => showcaseCard(i + 1, card)).join('');
+}

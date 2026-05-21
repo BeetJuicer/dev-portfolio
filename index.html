@@ -46,11 +46,20 @@
 
 <script src="main.js"></script>
 <script>
-  async function loadSection(id, file) {
-    const res = await fetch(file);
-    const html = await res.text();
-    document.getElementById(id).innerHTML = html;
-  }
+async function loadSection(id, file) {
+  const res = await fetch(file);
+  const html = await res.text();
+  const slot = document.getElementById(id);
+  slot.innerHTML = html;
+
+  // Re-execute any script tags (innerHTML doesn't run them)
+  slot.querySelectorAll('script').forEach(oldScript => {
+    const newScript = document.createElement('script');
+    newScript.textContent = oldScript.textContent;
+    document.body.appendChild(newScript);
+    newScript.remove();
+  });
+}
 
   Promise.all([
     loadSection('slot-header',       'sections/header.html'),
@@ -61,6 +70,7 @@
   ]).then(() => {
     lucide.createIcons();
     hljs.highlightAll();
+    initShowcaseCards(showcaseData);
     initShowcase();
     initReveal();
   });

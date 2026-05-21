@@ -1,4 +1,3 @@
-
 <!-- ═══ SHOWCASE ═══ -->
 <section id="showcase">
   <div class="wrap">
@@ -7,378 +6,75 @@
       <h2>Programming Showcase</h2>
     </div>
 
-    <div class="showcase-list">
-
-    <!-- 01 Mesh Generation -->
-    <div class="showcase-card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-summary">
-          <div class="card-num">01</div>
-          <div class="card-title">Procedural Mesh Generation</div>
-        </div>
-        <div class="card-header-right">
-          <div class="card-tags">
-            <span class="tag-pill">Mesh Generation</span>
-            <span class="tag-pill">Bezier Curves</span>
-          </div>
-          <span class="card-chevron">▶</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-body-inner">
-          <p class="card-desc">Procedural mesh generation along a Bezier path. Dynamically constructs geometry by sampling curve points and extruding cross-sections to form smooth, path-following meshes.</p>
-          <div class="embed-area">
-            <iframe
-              src="https://www.youtube.com/embed/omvbP3y_knc?autoplay=1&mute=1&loop=1&playlist=omvbP3y_knc&controls=0"
-              frameborder="0"
-              allowfullscreen
-              allow="autoplay"
-            ></iframe>
-          </div>
-          <!-- <div class="card-body-footer">
-            <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_PAGE" target="_blank">
-              <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-              Play on itch.io
-            </a>
-          </div> -->
-          <div class="scripts-toggle">
-            <button class="toggle-btn" onclick="toggleScripts(this)">
-              <span class="scripts-icon">{&nbsp;}</span> View Scripts
-            </button>
-          </div>
-
-          <div class="scripts-panel" data-project="mesh-generation">
-            <div class="file-tabs"></div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-      
-      <!-- 01 BOIDS -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">02</div>
-            <div class="card-title">Boids Simulation</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Flocking</span>
-              <span class="tag-pill">Steering AI</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">Flocking simulation using separation, alignment, and cohesion steering behaviours. Has complex obstacle avoidance. Uses compute shaders for performance.</p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/H_y1ytoyJCE?autoplay=1&mute=1&loop=1&playlist=H_y1ytoyJCE&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_BOIDS_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="boids">
-              <div class="file-tabs"></div>
-            </div>
-            
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 PERLIN NOISE -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">03</div>
-            <div class="card-title">Perlin Noise World Generation</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Proc Gen</span>
-              <span class="tag-pill">Tilemaps</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">Tile-based world generator using layered Perlin noise for biome and terrain classification. Configurable octaves, persistence, and lacunarity. Biome thresholds drive tile selection for diverse layouts from a single seed.</p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/QMdDeoYhtSU?autoplay=1&mute=1&loop=1&playlist=QMdDeoYhtSU&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/terrain" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="terrain">
-              <div class="file-tabs"></div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 DUNGEON GEN -->
-      <!-- <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">03</div>
-            <div class="card-title">Procedural Dungeon Layout</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Proc Gen</span>
-              <span class="tag-pill">BSP / Graph</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">Dungeon generation that features a frontier-based growth algorithm to generate procedural 2D dungeons in Unity. It utilizes depth-weighted scaling to dynamically adjust room sizes and corridor lengths as the layout expands from the starting point. To ensure varied gameplay, the system includes an automated carving pass for internal obstacles and integrates directly with Unity Tilemaps for efficient, grid-based rendering.</p>
-            <div class="embed-area">
-              <video autoplay loop muted playsinline>
-                <source data-src="preview-dungeon.mp4" type="video/mp4">
-              </video>
-            </div>
-             <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_DUNGEON_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> 
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="dungeon">
-              <div class="file-tabs"></div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- 04 AI + POSSESSION -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">04</div>
-            <div class="card-title">AI &amp; Possession Showcase</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Actor Pattern</span>
-              <span class="tag-pill">Controller Pattern</span>
-              <span class="tag-pill">FSM</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">Decoupled actor/controller architecture enabling seamless AI-to-player possession. Actors own all state; controllers feed inputs. FSM drives AI patrol, alert, and idle. Player can possess any actor by swapping its controller at runtime.</p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/wydn9HZ_tIs?autoplay=1&mute=1&loop=1&playlist=wydn9HZ_tIs&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_AI_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="possess">
-              <div class="file-tabs"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 05 BIRD FLIGHT -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">05</div>
-            <div class="card-title">Bird Flight Mechanics</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">FSM</span>
-              <span class="tag-pill">Splines</span>
-              <span class="tag-pill">Physics</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">FSM-driven bird flight with momentum handoff between states — dive speed feeds directly into glide velocity, making fast dives launch into swift, weighty glides. Lift and drag scale with entry speed, and spline-defined wind paths give birds a natural sense of flow through the environment.</p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/yKeQFtNLElM?autoplay=1&mute=1&loop=1&playlist=yKeQFtNLElM&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_BIRD_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="bird">
-              <div class="file-tabs"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 06 TIME CONTROL -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">06</div>
-            <div class="card-title">Time Control Mechanics</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Command Pattern</span>
-              <span class="tag-pill">Undo / Replay</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">Rewind and replay system built on the Command pattern. Every entity is a TimeReversible object except for the player, allowing for time control shenanigans. Objects snapshots are only recorded every interval frames and lerped per snapshot to improve performance.</p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/D7zdLpveWFY?autoplay=1&mute=1&loop=1&playlist=D7zdLpveWFY&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_TIME_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="time">
-              <div class="file-tabs"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-       <!-- 01 BULLET HELL -->
-      <div class="showcase-card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <div class="card-summary">
-            <div class="card-num">07</div>
-            <div class="card-title">Bullet Hell Generator</div>
-          </div>
-          <div class="card-header-right">
-            <div class="card-tags">
-              <span class="tag-pill">Procedural</span>
-              <span class="tag-pill">Game Systems</span>
-              <span class="tag-pill">Unity</span>
-            </div>
-            <span class="card-chevron">▶</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-body-inner">
-            <p class="card-desc">
-              Modular bullet hell system that generates attack sequences through configurable waves and patterns. 
-              Patterns (spirals, bursts, spreads, lasers, etc.) are defined as reusable ScriptableObjects, allowing 
-              designers to quickly create, tweak, and combine behaviors into complex encounters.
-            </p>
-            <div class="embed-area">
-              <iframe
-                src="https://www.youtube.com/embed/O3quc7zHcnw?autoplay=1&mute=1&loop=1&playlist=O3quc7zHcnw&controls=0"
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
-            </div>
-            <!-- <div class="card-body-footer">
-              <a class="itch-btn" href="https://beetjuicer.itch.io/YOUR_BOIDS_PAGE" target="_blank">
-                <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-                Play on itch.io
-              </a>
-            </div> -->
-            <div class="scripts-toggle">
-              <button class="toggle-btn" onclick="toggleScripts(this)">
-                <span class="scripts-icon">{&nbsp;}</span> View Scripts
-              </button>
-            </div>
-
-            <div class="scripts-panel" data-project="bullet">
-              <div class="file-tabs"></div>
-            </div>
-            
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div class="showcase-list" id="showcase-cards"></div>
   </div>
 </section>
+
+<script>
+  const showcaseData = [
+    {
+      title: "Procedural Mesh Generation",
+      tags: ["Mesh Generation", "Bezier Curves"],
+      description: "Procedural mesh generation along a Bezier path. Dynamically constructs geometry by sampling curve points and extruding cross-sections to form smooth, path-following meshes.",
+      youtubeId: "omvbP3y_knc",
+      itchUrl: null,
+      projectKey: "mesh-generation"
+    },
+    {
+      title: "Boids Simulation",
+      tags: ["Flocking", "Steering AI"],
+      description: "Flocking simulation using separation, alignment, and cohesion steering behaviours. Has complex obstacle avoidance. Uses compute shaders for performance.",
+      youtubeId: "H_y1ytoyJCE",
+      itchUrl: null,
+      projectKey: "boids"
+    },
+    {
+      title: "Perlin Noise World Generation",
+      tags: ["Proc Gen", "Tilemaps"],
+      description: "Tile-based world generator using layered Perlin noise for biome and terrain classification. Configurable octaves, persistence, and lacunarity. Biome thresholds drive tile selection for diverse layouts from a single seed.",
+      youtubeId: "QMdDeoYhtSU",
+      itchUrl: null,
+      projectKey: "terrain"
+    },
+    // {
+    //   title: "Procedural Dungeon Layout",
+    //   tags: ["Proc Gen", "BSP / Graph"],
+    //   description: "Dungeon generation that features a frontier-based growth algorithm to generate procedural 2D dungeons in Unity. It utilizes depth-weighted scaling to dynamically adjust room sizes and corridor lengths as the layout expands from the starting point. To ensure varied gameplay, the system includes an automated carving pass for internal obstacles and integrates directly with Unity Tilemaps for efficient, grid-based rendering.",
+    //   youtubeId: null,
+    //   itchUrl: null,
+    //   projectKey: "dungeon"
+    // },
+    {
+      title: "AI &amp; Possession Showcase",
+      tags: ["Actor Pattern", "Controller Pattern", "FSM"],
+      description: "Decoupled actor/controller architecture enabling seamless AI-to-player possession. Actors own all state; controllers feed inputs. FSM drives AI patrol, alert, and idle. Player can possess any actor by swapping its controller at runtime.",
+      youtubeId: "wydn9HZ_tIs",
+      itchUrl: null,
+      projectKey: "possess"
+    },
+    {
+      title: "Bird Flight Mechanics",
+      tags: ["FSM", "Splines", "Physics"],
+      description: "FSM-driven bird flight with momentum handoff between states — dive speed feeds directly into glide velocity, making fast dives launch into swift, weighty glides. Lift and drag scale with entry speed, and spline-defined wind paths give birds a natural sense of flow through the environment.",
+      youtubeId: "yKeQFtNLElM",
+      itchUrl: null,
+      projectKey: "bird"
+    },
+    {
+      title: "Time Control Mechanics",
+      tags: ["Command Pattern", "Undo / Replay"],
+      description: "Rewind and replay system built on the Command pattern. Every entity is a TimeReversible object except for the player, allowing for time control shenanigans. Objects snapshots are only recorded every interval frames and lerped per snapshot to improve performance.",
+      youtubeId: "D7zdLpveWFY",
+      itchUrl: null,
+      projectKey: "time"
+    },
+    {
+      title: "Bullet Hell Generator",
+      tags: ["Procedural", "Game Systems", "Unity"],
+      description: "Modular bullet hell system that generates attack sequences through configurable waves and patterns. Patterns (spirals, bursts, spreads, lasers, etc.) are defined as reusable ScriptableObjects, allowing designers to quickly create, tweak, and combine behaviors into complex encounters.",
+      youtubeId: "O3quc7zHcnw",
+      itchUrl: null,
+      projectKey: "bullet"
+    },
+  ];
+</script>
