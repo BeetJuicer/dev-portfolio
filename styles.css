@@ -582,3 +582,69 @@ nav {
 nav::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
+
+
+
+/* -- CTA ---*/
+.itch-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: #fa5c5c;
+  border: none;
+  border-radius: 4px;
+  padding: 28px 24px 22px;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.15s;
+  width: 160px;
+}
+.itch-cta:hover { background: #e84848; transform: translateY(-2px); }
+.itch-cta:active { transform: translateY(0); }
+
+.itch-cta-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+}
+.itch-cta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  line-height: 1.6;
+    word-break: break-word;  
+  overflow-wrap: break-word;  
+  width: 100%;  
+}
+.itch-cta-label strong {
+  display: block; font-weight: 500; color: #fff;
+  font-size: 15px; margin-bottom: 2px; letter-spacing: 0.08em;
+}
+.itch-cta-arrow { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.6); }
+.itch-cta:hover .itch-cta-arrow { color: #fff; }
+@media (max-width: 680px) {
+  .header-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .itch-cta-wrapper {
+    width: 100%;
+    gap: 0 !important;
+  }
+  .itch-arrow {
+    display: none;
+  }
+  .itch-cta {
+    width: 100%;
+    flex-direction: row;
+    padding: 18px 20px;
+    gap: 16px;
+  }
+  .itch-cta-label {
+    text-align: left;
+  }
+}
