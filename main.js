@@ -107,7 +107,16 @@ function initReveal(){
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 }
-  
+
+function initNameFlip() {
+  const nameFlip = document.querySelector('.name-flip-outer');
+  if (!nameFlip) return;
+
+  setInterval(() => {
+    nameFlip.classList.toggle('flipped');
+  }, 2000);
+}
+
   // ─── BACKGROUND CANVAS ANIMATION ───
   (function () {
     const canvas = document.getElementById('bg-canvas');
