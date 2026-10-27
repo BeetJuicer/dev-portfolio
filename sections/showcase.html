@@ -6,7 +6,8 @@
       <h2>Programming Showcase</h2>
     </div>
 
-    <div class="showcase-list" id="showcase-cards"></div>
+    <p class="section-lede">Systems I've built outside client work. Hover a clip to play it, and open the code to see how it works.</p>
+    <div class="showcase-grid" id="showcase-cards"></div>
   </div>
 </section>
 
@@ -18,7 +19,8 @@
       description: "Procedural mesh generation along a Bezier path. Dynamically constructs geometry by sampling curve points and extruding cross-sections to form smooth, path-following meshes.",
       youtubeId: "omvbP3y_knc",
       itchUrl: null,
-      projectKey: "mesh-generation"
+      projectKey: "mesh-generation",
+      video: null
     },
     {
       title: "Boids Simulation",
@@ -26,7 +28,8 @@
       description: "Flocking simulation using separation, alignment, and cohesion steering behaviours. Has complex obstacle avoidance. Uses compute shaders for performance.",
       youtubeId: "H_y1ytoyJCE",
       itchUrl: null,
-      projectKey: "boids"
+      projectKey: "boids",
+      video: "preview-boids.mp4"
     },
     {
       title: "Perlin Noise World Generation",
@@ -34,7 +37,8 @@
       description: "Tile-based world generator using layered Perlin noise for biome and terrain classification. Configurable octaves, persistence, and lacunarity. Biome thresholds drive tile selection for diverse layouts from a single seed.",
       youtubeId: "QMdDeoYhtSU",
       itchUrl: null,
-      projectKey: "terrain"
+      projectKey: "terrain",
+      video: "preview-terrain.mp4"
     },
     // {
     //   title: "Procedural Dungeon Layout",
@@ -50,7 +54,8 @@
       description: "Decoupled actor/controller architecture enabling seamless AI-to-player possession. Actors own all state; controllers feed inputs. FSM drives AI patrol, alert, and idle. Player can possess any actor by swapping its controller at runtime.",
       youtubeId: "wydn9HZ_tIs",
       itchUrl: null,
-      projectKey: "possess"
+      projectKey: "possess",
+      video: "preview-possess.mp4"
     },
     {
       title: "Bird Flight Mechanics",
@@ -58,7 +63,8 @@
       description: "FSM-driven bird flight with momentum handoff between states — dive speed feeds directly into glide velocity, making fast dives launch into swift, weighty glides. Lift and drag scale with entry speed, and spline-defined wind paths give birds a natural sense of flow through the environment.",
       youtubeId: "yKeQFtNLElM",
       itchUrl: null,
-      projectKey: "bird"
+      projectKey: "bird",
+      video: "preview-bird.mp4"
     },
     {
       title: "Time Control Mechanics",
@@ -66,7 +72,8 @@
       description: "Rewind and replay system built on the Command pattern. Every entity is a TimeReversible object except for the player, allowing for time control shenanigans. Objects snapshots are only recorded every interval frames and lerped per snapshot to improve performance.",
       youtubeId: "D7zdLpveWFY",
       itchUrl: null,
-      projectKey: "time"
+      projectKey: "time",
+      video: "preview-time.mp4"
     },
     {
       title: "Bullet Hell Generator",
@@ -74,7 +81,18 @@
       description: "Modular bullet hell system that generates attack sequences through configurable waves and patterns. Patterns (spirals, bursts, spreads, lasers, etc.) are defined as reusable ScriptableObjects, allowing designers to quickly create, tweak, and combine behaviors into complex encounters.",
       youtubeId: "O3quc7zHcnw",
       itchUrl: null,
-      projectKey: "bullet"
+      projectKey: "bullet",
+      video: "preview-bullet.mp4"
     },
   ];
 </script>
+
+<dialog class="code-dialog" id="code-dialog">
+  <div class="code-dialog-head">
+    <span class="code-dialog-title" id="code-dialog-title"></span>
+    <button class="code-dialog-close" onclick="this.closest('dialog').close()" aria-label="Close">✕</button>
+  </div>
+  <div class="scripts-panel" id="code-dialog-panel">
+    <div class="file-tabs"></div>
+  </div>
+</dialog>

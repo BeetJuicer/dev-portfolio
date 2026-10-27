@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Programmer Portfolio</title>
+  <title>Carl Capilitan · Unity Gameplay Programmer</title>
+  <meta name="description" content="Freelance Unity / C# gameplay programmer. Lead developer of City of Faith, a live mobile game on Google Play. Gameplay systems, economies, cloud saves and multiplayer.">
+  <meta property="og:title" content="Carl Capilitan · Unity Gameplay Programmer">
+  <meta property="og:description" content="Lead developer of City of Faith (live on Google Play). Gameplay systems, economies, cloud saves and multiplayer in Unity / C#.">
+  <meta property="og:image" content="https://beetjuicer.github.io/dev-portfolio/preview-cof.png">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -21,10 +26,10 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="#published">Published</a>
+    <a href="#published">Games</a>
     <a href="#showcase">Showcase</a>
     <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Hire me</a>
   </div>
 </nav>
 
@@ -70,10 +75,11 @@ async function loadSection(id, file) {
   ]).then(() => {
     lucide.createIcons();
     hljs.highlightAll();
+    initPlayLinks();
+    initOptionalMedia();
+    initHeroReel();
     initShowcaseCards(showcaseData);
-    initShowcase();
     initReveal();
-    initNameFlip();
   });
 </script>
 

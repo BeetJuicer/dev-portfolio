@@ -1,81 +1,85 @@
-
-<!-- ═══ PUBLISHED ═══ -->
+<!-- ═══ GAMES ═══ -->
 <section id="published">
   <div class="wrap">
     <div class="section-head">
       <span class="section-num">01</span>
-      <h2>Published Games</h2>
+      <h2>Games</h2>
     </div>
 
-    <!-- City of Faith — Unity Mobile Game -->
-    <div class="project-row">
-      <div>
-        <div class="project-name">City of Faith (Playstore)</div>
-        <div class="project-platform">Mobile · Live Production · Unity / C#</div>
-        <a href="https://beetjuicer.itch.io/city-of-faith" target="_blank" rel="noopener noreferrer"><img src="preview-cof.png" alt="City of Faith" class="project-thumb" /></a>
+    <!-- City of Faith (featured) -->
+    <!-- Google Play URL lives in PLAY_STORE_URL (main.js). Until it is set, links fall back to itch.io and the Play button hides. -->
+    <article class="featured-game">
+      <a class="featured-media" data-play-link href="https://beetjuicer.itch.io/city-of-faith" target="_blank" rel="noopener noreferrer">
+        <img src="preview-cof.png" alt="City of Faith gameplay" />
+        <span class="media-badge">Live on Google Play</span>
+      </a>
+      <div class="featured-body">
+        <div class="project-platform">Mobile · Live production · Unity / C# · Lead Developer &amp; PM</div>
+        <h3 class="featured-title">City of Faith</h3>
+        <p class="featured-pitch">A 3D city-building and farming game. I led it from prototype to Play Store launch and ran the project.</p>
+        <div class="project-contributions">
+          <ul>
+            <li><strong>Core loops:</strong> resources, building &amp; planting, player progression.</li>
+            <li><strong>Economy</strong> balanced using 15+ tracked engagement metrics.</li>
+            <li><strong>Data layer:</strong> SQLite offline saves, Unity Cloud Save, Addressables content delivery.</li>
+            <li><strong>Serverless backend</strong> on Unity Cloud Code: expedition matchmaking, friend donations.</li>
+            <li><strong>Laravel admin CMS</strong> for live content: daily verse and quiz rotation, roles, activity logs, R2 backups. Saved 12+ hours/month of manual work.</li>
+          </ul>
+        </div>
+        <div class="featured-links">
+          <a class="btn btn-primary" data-play-link data-play-only href="#" target="_blank" rel="noopener noreferrer"><span class="si si-googleplay"></span> Google Play</a>
+          <a class="btn" href="https://beetjuicer.itch.io/city-of-faith" target="_blank" rel="noopener noreferrer"><span class="si si-itchdotio"></span> Itch.io</a>
+        </div>
       </div>
-      <div class="project-contributions">
-        <ul>
-          <li><strong>Lead developer</strong> — built resource loops, building &amp; planting mechanics, and player progression using OOP patterns.</li>
-          <li><strong>Balanced economy</strong> using analytics from 15+ tracked engagement metrics.</li>
-          <li><strong>Architected the full data layer</strong>: SQLite offline, Unity Services cloud save, and content delivery with addressables.</li>
-          <li><strong>Built Unity Cloud Code serverless backend</strong> — expedition matchmaking, friend donation systems, and live game logic.</li>
-        </ul>
-      </div>
-      <div class="project-links">
-        <a href="https://beetjuicer.itch.io/city-of-faith" target="_blank" rel="noopener noreferrer">Itch.io</a>
-      </div>
-    </div>
+    </article>
 
-    <!-- City of Faith Admin CMS — Laravel -->
-    <div class="project-row">
-      <div>
-        <div class="project-name">City of Faith Admin CMS</div>
-        <div class="project-platform">Web · Live Production · Laravel / PHP</div>
-        <img src="preview-cof-cms.jpg" alt="City of Faith CMS" class="project-thumb" />
+    <!-- NetBrawl (in development) -->
+    <!-- To add a clip: drop preview-netbrawl.mp4 in the repo root. Until it exists the media panel stays hidden. -->
+    <article class="featured-game wip-game">
+      <div class="featured-media featured-media-video" data-optional-media>
+        <video muted loop playsinline autoplay preload="metadata">
+          <source src="preview-netbrawl.mp4" type="video/mp4" />
+        </video>
       </div>
-      <div class="project-contributions">
-        <ul>
-          <li><strong>Laravel backend powering live game content </strong>— manages all the bible verses and quizzes with automated daily rotation to Unity's cloud.</li>
-          <li><strong>Content management system for mobile game with task scheduling, role-based authentication, activity logs, and  Cloudflare R2 backups.</strong> Eliminated 12+ hours/month of manual content work.</li>
-        </ul>
+      <div class="featured-body">
+        <div class="project-platform">PC · Online multiplayer · Unity / C# · Solo <span class="wip-badge">In development</span></div>
+        <h3 class="featured-title">NetBrawl</h3>
+        <p class="featured-pitch">A 2D online fighting game with a server-authoritative netcode architecture.</p>
+        <div class="project-contributions">
+          <ul>
+            <li><strong>Server-authoritative</strong> with Netcode for GameObjects + Relay, running a fixed 60 Hz tick simulation.</li>
+            <li><strong>Frame data in ticks:</strong> startup, active and recovery phases driven by a pure static state machine.</li>
+            <li><strong>Loss-tolerant input:</strong> input RPCs carry redundant past frames so dropped packets don't drop inputs.</li>
+          </ul>
+        </div>
+        <!-- <div class="featured-links">
+          <a class="btn" href="https://github.com/BeetJuicer/REPO" target="_blank" rel="noopener noreferrer"><span class="si si-github"></span> Source</a>
+        </div> -->
       </div>
-    </div>
+    </article>
 
-    <!-- Pawcasso -->
-    <div class="project-row">
-      <div>
-        <div class="project-name">Pawcasso</div>
-        <div class="project-platform">PC · University Showcase · Unity / C#</div>
-        <a href="https://beetjuicer.itch.io/pawcasso" target="_blank" rel="noopener noreferrer"><img src="preview-pawcasso.png" alt="Pawcasso" class="project-thumb" /></a>
-      </div>
-      <div class="project-contributions">
-        <ul>
-          <li><strong>Team Lead & Lead Developer</strong> — designed and developed a skill-based paint charge combat system inspired by Splatoon, iterating through paper and game prototypes.</li>
-          <li><strong>Led a 10-member team</strong> across code, art, and audio. Achieved highest engagement score at the university tech showcase.</li>
-        </ul>
-      </div>
-      <div class="project-links">
-        <a href="https://beetjuicer.itch.io/pawcasso" target="_blank" rel="noopener noreferrer">Itch.io</a>
-      </div>
-    </div>
+    <div class="game-grid">
+      <!-- Pawcasso -->
+      <article class="game-card">
+        <a class="game-card-media" href="https://beetjuicer.itch.io/pawcasso" target="_blank" rel="noopener noreferrer">
+          <img src="preview-pawcasso.png" alt="Pawcasso" loading="lazy" />
+        </a>
+        <div class="project-platform">PC · Team of 10 · Unity / C#</div>
+        <h3 class="game-card-title">Pawcasso</h3>
+        <p class="game-card-desc"><strong>Team lead &amp; lead dev.</strong> A skill-based paint-charge combat system inspired by Splatoon. Got the highest engagement score at the university tech showcase.</p>
+        <div class="project-links"><a href="https://beetjuicer.itch.io/pawcasso" target="_blank" rel="noopener noreferrer">Play on Itch.io</a></div>
+      </article>
 
-    <!-- A Slime Out of Time -->
-    <div class="project-row">
-      <div>
-        <div class="project-name">A Slime Out of Time</div>
+      <!-- A Slime Out of Time -->
+      <article class="game-card">
+        <a class="game-card-media" href="https://beetjuicer.itch.io/asoot" target="_blank" rel="noopener noreferrer">
+          <img src="preview-asoot.gif" alt="A Slime Out of Time" loading="lazy" />
+        </a>
         <div class="project-platform">PC · Solo · Unity / C#</div>
-        <a href="https://beetjuicer.itch.io/asoot" target="_blank" rel="noopener noreferrer"><img src="preview-asoot.png" alt="A Slime Out of Time" class="project-thumb" /></a>
-      </div>
-      <div class="project-contributions">
-        <ul>
-          <li>Solo-developed <strong>2D pixel art platformer</strong> — designed and implemented all gameplay systems, dialogue, and progression.</li>
-          <li>Built a platformer experience using state machines, Unity Timeline cutscenes, NPC interactions and dialogue with Ink, and a Celeste-inspired tutorial flow.</li>
-        </ul>
-      </div>
-      <div class="project-links">
-        <a href="https://beetjuicer.itch.io/asoot">Itch.io</a>
-      </div>
+        <h3 class="game-card-title">A Slime Out of Time</h3>
+        <p class="game-card-desc"><strong>Solo 2D platformer.</strong> State-machine movement, Timeline cutscenes, Ink-driven NPC dialogue and a Celeste-inspired tutorial flow.</p>
+        <div class="project-links"><a href="https://beetjuicer.itch.io/asoot" target="_blank" rel="noopener noreferrer">Play on Itch.io</a></div>
+      </article>
     </div>
 
   </div>

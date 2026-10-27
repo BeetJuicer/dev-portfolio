@@ -1,29 +1,30 @@
 <header style="position:relative;z-index:1;">
-  <div class="wrap">
-    <div class="eyebrow fade">Game Programmer</div>
-    <div class="name-flip-outer fade d1">
-      <div class="name-flip-inner" onclick="this.parentElement.classList.toggle('flipped')" style="cursor:pointer;">
-        <h1 class="name-front">beetjuicer<i data-lucide="mouse-pointer-2" class="name-hint-icon"></i></h1>
-        <h1 class="name-back"><em>  carl</em></h1>
+  <div class="wrap hero">
+    <div class="hero-text">
+      <div class="eyebrow fade"><span class="avail-dot"></span>Available for freelance · UTC+8</div>
+      <h1 class="fade d1">Carl Capilitan</h1>
+      <div class="hero-role fade d1">Unity Gameplay Programmer <span class="hero-handle">aka beetjuicer</span></div>
+      <p class="hero-bio fade d2">
+        Lead developer of <b>City of Faith</b>, a mobile game live on Google Play. I build gameplay systems, economies, save/cloud backends and combat, from prototype to launch.
+      </p>
+
+      <div class="hero-cta fade d3">
+        <a class="btn btn-primary" href="#contact">Work with me</a>
+        <a class="btn" href="#showcase">See the work</a>
+      </div>
+
+      <div class="hero-links fade d3">
+        <a href="https://github.com/BeetJuicer" target="_blank" rel="noopener noreferrer"><span class="si si-github"></span> GitHub</a>
+        <a href="https://www.linkedin.com/in/carl-capilitan/" target="_blank" rel="noopener noreferrer"><span class="si si-linkedin"></span> LinkedIn</a>
+        <a href="https://beetjuicer.itch.io/" target="_blank" rel="noopener noreferrer"><span class="si si-itchdotio"></span> Itch.io</a>
+        <a href="https://drive.google.com/file/d/1f-P70W2MY0hUDSFff93RqNsCm9tiQJRC/view?usp=sharing" target="_blank" rel="noopener noreferrer"><i data-lucide="file-text"></i> Resume</a>
       </div>
     </div>
-    <p class="hero-bio fade d2">
-      Gameplay programmer. Led development of <b>City of Faith</b>, a live mobile game on Google Play — core loops, economy, cloud save, and a serverless backend on Unity Cloud Code.
-    </p>
 
-    <p class="hero-bio fade d2">
-      <i>Former Game Developer Intern and DOST Scholar at the Department of Science and Technology.</i>
-    </p>
-    
-    <div class="hero-links fade d3">
-      <a href="https://github.com/BeetJuicer" target="_blank" rel="noopener noreferrer"><span class="si si-github"></span> GitHub</a>
-      <a href="https://www.linkedin.com/in/carl-capilitan/" target="_blank" rel="noopener noreferrer"><span class="si si-linkedin"></span> LinkedIn</a>
-      <a href="https://beetjuicer.itch.io/" target="_blank" rel="noopener noreferrer"><span class="si si-itchdotio"></span> Itch.io</a>
-      <a href="mailto:cc.capilitan@gmail.com" target="_blank" rel="noopener noreferrer"><i data-lucide="mail"></i> Email</a>
-    </div>
-    <br>
-    <div class="hero-links fade d3">
-      <a href="https://drive.google.com/file/d/1f-P70W2MY0hUDSFff93RqNsCm9tiQJRC/view?usp=sharing" target="_blank" rel="noopener noreferrer">View My Resume</a>
+    <!-- Hero reel: cycles through the clips in heroReel (main.js). Swap in a real demo reel when you have one. -->
+    <div class="hero-media fade d2">
+      <video id="hero-video" muted playsinline autoplay preload="auto"></video>
+      <div class="hero-media-label" id="hero-label"></div>
     </div>
   </div>
-</header> 
+</header>

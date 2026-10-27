@@ -1,81 +1,175 @@
-// ─── SHOWCASE CARD EXPAND/COLLAPSE ───
-function toggleCard(header) {
-  const card = header.closest('.showcase-card');
-  card.classList.toggle('open');
+// ─── LINKS ───
+// Paste the City of Faith Google Play listing URL here. Empty = Play links fall back to itch.io.
+const PLAY_STORE_URL = '';
 
-  const body = card.querySelector('.card-body');
-  if (card.classList.contains('open')) {
-    body.addEventListener('transitionend', () => {
-      body.style.overflow = 'visible';
-    }, { once: true });
-  } else {
-    body.style.overflow = 'hidden';
-  }
-
-  // After opening, load any unloaded videos inside
-  const video = header.nextElementSibling.querySelector('video');
-  if (video) {
-    const source = video.querySelector('source[data-src]');
-    if (source) {
-      source.src = source.dataset.src;     // set the real src
-      source.removeAttribute('data-src');  // mark as loaded
-      video.load();                        // trigger load
-      video.play();
-    }
-  }
-}
-
-// ─── SCRIPTS PANEL TOGGLE ───
-function toggleScripts(btn) {
-  btn.classList.toggle('open');
-  btn.closest('.scripts-toggle').nextElementSibling.classList.toggle('visible');
-}
-
-function initShowcase() {
-  // ─── AUTO-BUILD SCRIPT TABS ───
-  document.querySelectorAll('.scripts-panel[data-project]').forEach(panel => {
-    const project = panel.getAttribute('data-project');
-    const base = `cs-scripts/${project}`;
-    const tabBar = panel.querySelector('.file-tabs');
-
-    fetch(`${base}/manifest.json`)
-      .then(r => r.json())
-      .then(files => {
-        files.forEach((filename, i) => {
-          const tab = document.createElement('button');
-          tab.className = 'file-tab' + (i === 0 ? ' active' : '');
-          tab.textContent = filename;
-
-          const content = document.createElement('div');
-          content.className = 'file-content' + (i === 0 ? ' active' : '');
-          const pre = document.createElement('pre');
-          const code = document.createElement('code');
-          code.textContent = 'Loading...';
-          pre.appendChild(code);
-          content.appendChild(pre);
-
-          tab.onclick = () => {
-            panel.querySelectorAll('.file-tab').forEach(t => t.classList.remove('active'));
-            panel.querySelectorAll('.file-content').forEach(c => c.classList.remove('active'));
-            tab.classList.add('active');
-            content.classList.add('active');
-          };
-
-          tabBar.appendChild(tab);
-          panel.appendChild(content);
-
-          fetch(`${base}/${filename}`)
-            .then(r => r.ok ? r.text() : Promise.reject())
-            .then(text => {
-              code.textContent = text;
-              hljs.highlightElement(code);
-            })
-            .catch(() => { code.textContent = `// Could not load ${filename}`; });
-        });
-      })
-      .catch(() => { tabBar.textContent = '// No manifest found'; });
+function initPlayLinks() {
+  document.querySelectorAll('[data-play-link]').forEach(a => {
+    if (PLAY_STORE_URL) a.href = PLAY_STORE_URL;
+    else if (a.hasAttribute('data-play-only')) a.remove();
   });
 }
+
+// Media panels marked data-optional-media disappear if their video file is missing
+function initOptionalMedia() {
+  document.querySelectorAll('[data-optional-media]').forEach(panel => {
+    const source = panel.querySelector('source');
+    const hide = () => panel.closest('.featured-game').classList.add('no-media');
+    const video = panel.querySelector('video');
+    if (!source || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) return hide();
+    source.addEventListener('error', hide);
+  });
+}
+
+// ─── HERO REEL ───
+// Clips the hero cycles through. Replace with a single demo reel once you have one.
+const heroReel = [
+  { src: 'preview-boids.mp4',   label: 'Boids · compute shaders' },
+  { src: 'preview-bird.mp4',    label: 'Bird flight · FSM + splines' },
+  { src: 'preview-time.mp4',    label: 'Time rewind · command pattern' },
+  { src: 'preview-bullet.mp4',  label: 'Bullet hell · data-driven patterns' },
+  { src: 'preview-possess.mp4', label: 'AI possession · actor / controller' },
+];
+const HERO_CLIP_SECONDS = 6;
+
+function initHeroReel() {
+  const video = document.getElementById('hero-video');
+  const label = document.getElementById('hero-label');
+  if (!video || !heroReel.length) return;
+
+  let i = 0;
+  let timer;
+  const show = () => {
+    const clip = heroReel[i];
+    video.src = clip.src;
+    label.textContent = clip.label;
+    video.play().catch(() => {});
+    clearTimeout(timer);
+    timer = setTimeout(next, HERO_CLIP_SECONDS * 1000);
+  };
+  const next = () => { i = (i + 1) % heroReel.length; show(); };
+
+  video.addEventListener('ended', next);
+  show();
+}
+
+// ─── SHOWCASE GRID ───
+function showcaseCard({ title, tags, description, youtubeId, projectKey, video }) {
+  const tagPills = tags.map(t => `<span class="tag-pill">${t}</span>`).join('');
+
+  const media = video
+    ? `<video muted loop playsinline preload="none" poster="https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg" data-src="${video}"></video>`
+    : `<img src="https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg" alt="${title}" loading="lazy" />`;
+
+  return `
+    <article class="showcase-card">
+      <a class="showcase-media" href="https://www.youtube.com/watch?v=${youtubeId}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${title} on YouTube">
+        ${media}
+        <span class="showcase-play">▶ Full video</span>
+      </a>
+      <div class="showcase-body">
+        <h3 class="card-title">${title}</h3>
+        <p class="card-desc">${description}</p>
+        <div class="card-tags">${tagPills}</div>
+        <button class="toggle-btn" onclick="openCode('${projectKey}', this)">
+          <span class="scripts-icon">{&nbsp;}</span> View code
+        </button>
+      </div>
+    </article>`;
+}
+
+function initShowcaseCards(data) {
+  // Cards with a local clip first, so the grid opens on motion
+  const ordered = [...data].sort((a, b) => !a.video - !b.video);
+  document.getElementById('showcase-cards').innerHTML = ordered.map(showcaseCard).join('');
+
+  const videos = document.querySelectorAll('.showcase-media video');
+  const hoverCapable = window.matchMedia('(hover: hover)').matches;
+
+  const load = v => {
+    if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); }
+  };
+
+  if (hoverCapable) {
+    // Desktop: play on hover
+    videos.forEach(v => {
+      const card = v.closest('.showcase-card');
+      card.addEventListener('mouseenter', () => { load(v); v.play().catch(() => {}); });
+      card.addEventListener('mouseleave', () => v.pause());
+    });
+  } else {
+    // Touch: play while on screen
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { load(e.target); e.target.play().catch(() => {}); }
+        else e.target.pause();
+      });
+    }, { threshold: 0.6 });
+    videos.forEach(v => obs.observe(v));
+  }
+}
+
+// ─── CODE DIALOG ───
+const codeCache = {};
+
+function openCode(projectKey, btn) {
+  const dialog = document.getElementById('code-dialog');
+  const panel = document.getElementById('code-dialog-panel');
+  const tabBar = panel.querySelector('.file-tabs');
+  document.getElementById('code-dialog-title').textContent =
+    btn.closest('.showcase-card').querySelector('.card-title').textContent;
+
+  tabBar.innerHTML = '';
+  panel.querySelectorAll('.file-content').forEach(c => c.remove());
+  dialog.showModal();
+
+  const base = `cs-scripts/${projectKey}`;
+  fetch(`${base}/manifest.json`)
+    .then(r => r.json())
+    .then(files => {
+      files.forEach((filename, i) => {
+        const tab = document.createElement('button');
+        tab.className = 'file-tab' + (i === 0 ? ' active' : '');
+        tab.textContent = filename;
+
+        const content = document.createElement('div');
+        content.className = 'file-content' + (i === 0 ? ' active' : '');
+        const pre = document.createElement('pre');
+        const code = document.createElement('code');
+        code.className = 'language-csharp';
+        code.textContent = 'Loading...';
+        pre.appendChild(code);
+        content.appendChild(pre);
+
+        tab.onclick = () => {
+          panel.querySelectorAll('.file-tab').forEach(t => t.classList.remove('active'));
+          panel.querySelectorAll('.file-content').forEach(c => c.classList.remove('active'));
+          tab.classList.add('active');
+          content.classList.add('active');
+        };
+
+        tabBar.appendChild(tab);
+        panel.appendChild(content);
+
+        const url = `${base}/${filename}`;
+        const text = codeCache[url]
+          ? Promise.resolve(codeCache[url])
+          : fetch(url).then(r => r.ok ? r.text() : Promise.reject());
+        text
+          .then(t => {
+            codeCache[url] = t;
+            code.textContent = t;
+            hljs.highlightElement(code);
+          })
+          .catch(() => { code.textContent = `// Could not load ${filename}`; });
+      });
+    })
+    .catch(() => { tabBar.textContent = '// No manifest found'; });
+}
+
+// Click on the backdrop closes the dialog
+document.addEventListener('click', e => {
+  if (e.target.id === 'code-dialog') e.target.close();
+});
 
 function initReveal(){
 
@@ -92,13 +186,10 @@ function initReveal(){
   document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
   
   // ─── SCROLL REVEAL ───
-  document.querySelectorAll('.project-row').forEach((el, i) => {
+  document.querySelectorAll('.featured-game, .game-card, .showcase-card').forEach(el => {
     el.classList.add('reveal');
-    el.style.setProperty('--i', i);
-  });
-  document.querySelectorAll('.showcase-card').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.setProperty('--i', i);
+    // Stagger siblings in the same grid row
+    el.style.setProperty('--i', [...el.parentElement.children].indexOf(el) % 2);
   });
   document.querySelectorAll('.section-head').forEach(el => el.classList.add('reveal'));
   
@@ -106,15 +197,6 @@ function initReveal(){
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-}
-
-function initNameFlip() {
-  const nameFlip = document.querySelector('.name-flip-outer');
-  if (!nameFlip) return;
-
-  setInterval(() => {
-    nameFlip.classList.toggle('flipped');
-  }, 2000);
 }
 
   // ─── BACKGROUND CANVAS ANIMATION ───
@@ -189,56 +271,3 @@ function initNameFlip() {
     draw();
   })();
 
-  //showcase
-function showcaseCard(num, { title, tags, description, youtubeId, itchUrl, projectKey }) {
-  const tagPills = tags.map(t => `<span class="tag-pill">${t}</span>`).join('');
-
-  const itchBtn = itchUrl ? `
-    <div class="card-body-footer">
-      <a class="itch-btn" href="${itchUrl}" target="_blank">
-        <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io" height="16" />
-        Play on itch.io
-      </a>
-    </div>` : '';
-
-  return `
-    <div class="showcase-card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-summary">
-          <div class="card-num">${String(num).padStart(2, '0')}</div>
-          <div class="card-title">${title}</div>
-        </div>
-        <div class="card-header-right">
-          <div class="card-tags">${tagPills}</div>
-          <span class="card-chevron">▶</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-body-inner">
-          <p class="card-desc">${description}</p>
-          <div class="embed-area">
-            <iframe
-              src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0"
-              frameborder="0"
-              allowfullscreen
-              allow="autoplay"
-            ></iframe>
-          </div>
-          ${itchBtn}
-          <div class="scripts-toggle">
-            <button class="toggle-btn" onclick="toggleScripts(this)">
-              <span class="scripts-icon">{&nbsp;}</span> View Scripts
-            </button>
-          </div>
-          <div class="scripts-panel" data-project="${projectKey}">
-            <div class="file-tabs"></div>
-          </div>
-        </div>
-      </div>
-    </div>`;
-}
-
-function initShowcaseCards(data) {
-  document.getElementById('showcase-cards').innerHTML =
-    data.map((card, i) => showcaseCard(i + 1, card)).join('');
-}
