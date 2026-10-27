@@ -315,6 +315,10 @@ h2 {
 }
 .featured-media:hover img { transform: scale(1.02); }
 
+.featured-gallery { display: flex; flex-direction: column; gap: 12px; }
+.featured-media-sub img { aspect-ratio: 16 / 7; object-position: top left; }
+.featured-media-sub .media-badge { top: auto; bottom: 12px; }
+
 .media-badge {
   position: absolute;
   top: 12px;
