@@ -34,11 +34,17 @@ const HERO_CLIP_SECONDS = 6;
 function initHeroReel() {
   const video = document.getElementById('hero-video');
   const label = document.getElementById('hero-label');
+  const count = document.getElementById('hero-count');
   const dots = document.getElementById('hero-dots');
   if (!video || !heroReel.length) return;
 
   dots.innerHTML = heroReel.map((_, n) => `<button aria-label="Clip ${n + 1}"></button>`).join('');
+  dots.style.setProperty('--clip-dur', `${HERO_CLIP_SECONDS}s`);
   const dotButtons = [...dots.children];
+  const pad = n => String(n).padStart(2, '0');
+
+  // The timer drives the reel, so short clips loop until it fires
+  video.loop = true;
 
   let i = 0;
   let timer;
@@ -46,7 +52,13 @@ function initHeroReel() {
     const clip = heroReel[i];
     video.src = clip.src;
     label.textContent = clip.label;
-    dotButtons.forEach((d, n) => d.classList.toggle('active', n === i));
+    count.textContent = `${pad(i + 1)} / ${pad(heroReel.length)}`;
+    dotButtons.forEach((d, n) => {
+      d.classList.remove('active');
+      d.classList.toggle('done', n < i);
+    });
+    void dots.offsetWidth; // restart the fill animation
+    dotButtons[i].classList.add('active');
     video.play().catch(() => {});
     clearTimeout(timer);
     timer = setTimeout(next, HERO_CLIP_SECONDS * 1000);
@@ -57,7 +69,6 @@ function initHeroReel() {
   document.getElementById('hero-prev').addEventListener('click', () => go(i - 1));
   document.getElementById('hero-next').addEventListener('click', next);
   dotButtons.forEach((d, n) => d.addEventListener('click', () => go(n)));
-  video.addEventListener('ended', next);
   show();
 }
 

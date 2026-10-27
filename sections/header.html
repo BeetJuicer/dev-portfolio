@@ -22,12 +22,17 @@
     </div>
 
     <!-- Hero reel: cycles through the clips in heroReel (main.js). Swap in a real demo reel when you have one. -->
-    <div class="hero-media fade d2">
-      <video id="hero-video" muted playsinline autoplay preload="auto"></video>
-      <button class="hero-nav hero-prev" id="hero-prev" aria-label="Previous clip">‹</button>
-      <button class="hero-nav hero-next" id="hero-next" aria-label="Next clip">›</button>
-      <div class="hero-media-label"><span id="hero-label"></span><a href="#showcase" class="hero-label-link">See all →</a></div>
-      <div class="hero-dots" id="hero-dots"></div>
+    <div class="hero-reel fade d2">
+      <div class="hero-media">
+        <video id="hero-video" muted playsinline autoplay preload="auto"></video>
+      </div>
+      <div class="hero-progress" id="hero-dots"></div>
+      <div class="hero-controls">
+        <span class="hero-label" id="hero-label"></span>
+        <span class="hero-count" id="hero-count"></span>
+        <button class="hero-nav" id="hero-prev" aria-label="Previous clip"><i data-lucide="chevron-left"></i></button>
+        <button class="hero-nav" id="hero-next" aria-label="Next clip"><i data-lucide="chevron-right"></i></button>
+      </div>
     </div>
   </div>
 </header>
