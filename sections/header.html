@@ -2,10 +2,10 @@
   <div class="wrap hero">
     <div class="hero-text">
       <div class="eyebrow fade"><span class="avail-dot"></span>Available for freelance · UTC+8</div>
-      <h1 class="fade d1">Carl Capilitan</h1>
+      <h1 class="fade d1">Carl</h1>
       <div class="hero-role fade d1">Unity Gameplay Programmer <span class="hero-handle">aka beetjuicer</span></div>
       <p class="hero-bio fade d2">
-        Lead developer of <b>City of Faith</b>, a mobile game live on Google Play. I build gameplay systems, economies, save/cloud backends and combat, from prototype to launch.
+        Lead developer of <b>City of Faith</b>, a mobile game I took from prototype to Google Play launch and handed off to the client. I build gameplay systems, economies, save/cloud backends and combat.
       </p>
 
       <div class="hero-cta fade d3">
@@ -24,7 +24,10 @@
     <!-- Hero reel: cycles through the clips in heroReel (main.js). Swap in a real demo reel when you have one. -->
     <div class="hero-media fade d2">
       <video id="hero-video" muted playsinline autoplay preload="auto"></video>
-      <div class="hero-media-label" id="hero-label"></div>
+      <button class="hero-nav hero-prev" id="hero-prev" aria-label="Previous clip">‹</button>
+      <button class="hero-nav hero-next" id="hero-next" aria-label="Next clip">›</button>
+      <div class="hero-media-label"><span id="hero-label"></span><a href="#showcase" class="hero-label-link">See all →</a></div>
+      <div class="hero-dots" id="hero-dots"></div>
     </div>
   </div>
 </header>

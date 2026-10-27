@@ -34,7 +34,11 @@ const HERO_CLIP_SECONDS = 6;
 function initHeroReel() {
   const video = document.getElementById('hero-video');
   const label = document.getElementById('hero-label');
+  const dots = document.getElementById('hero-dots');
   if (!video || !heroReel.length) return;
+
+  dots.innerHTML = heroReel.map((_, n) => `<button aria-label="Clip ${n + 1}"></button>`).join('');
+  const dotButtons = [...dots.children];
 
   let i = 0;
   let timer;
@@ -42,12 +46,17 @@ function initHeroReel() {
     const clip = heroReel[i];
     video.src = clip.src;
     label.textContent = clip.label;
+    dotButtons.forEach((d, n) => d.classList.toggle('active', n === i));
     video.play().catch(() => {});
     clearTimeout(timer);
     timer = setTimeout(next, HERO_CLIP_SECONDS * 1000);
   };
-  const next = () => { i = (i + 1) % heroReel.length; show(); };
+  const go = n => { i = (n + heroReel.length) % heroReel.length; show(); };
+  const next = () => go(i + 1);
 
+  document.getElementById('hero-prev').addEventListener('click', () => go(i - 1));
+  document.getElementById('hero-next').addEventListener('click', next);
+  dotButtons.forEach((d, n) => d.addEventListener('click', () => go(n)));
   video.addEventListener('ended', next);
   show();
 }
