@@ -390,24 +390,7 @@ h2 {
 .game-card-title { font-size: 18px; font-weight: 400; margin: 6px 0 6px; }
 .game-card-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 10px; }
 .game-card-desc strong { font-weight: 500; color: var(--text); }
-
-.project-links a {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  padding-bottom: 1px;
-  border-bottom: 1px solid var(--faint);
-  white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
-}
-.project-links a:hover { color: var(--text); border-bottom-color: var(--text); }
-.project-links a::after {
-  content: ' ↗';
-  color: var(--faint);
-}
+.game-card .featured-links { margin-top: 14px; }
 
 /* ─── SHOWCASE ─── */
 .showcase-grid {

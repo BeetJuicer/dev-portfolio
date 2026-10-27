@@ -1,6 +1,6 @@
 // ─── LINKS ───
 // Paste the City of Faith Google Play listing URL here. Empty = Play links fall back to itch.io.
-const PLAY_STORE_URL = '';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.almisangels.cityoffaith';
 
 function initPlayLinks() {
   document.querySelectorAll('[data-play-link]').forEach(a => {
